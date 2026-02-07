@@ -14,10 +14,8 @@
 }
 
 body{
-    background: radial-gradient(circle, #ff5f6d, #8b0000);
-    color:white;
-    text-align:center;
-    overflow-x:hidden;
+background: #f9f0e6; /* gentle beige */
+  color: #800020;
 }
 
 /* Pages */
@@ -99,7 +97,8 @@ button{
 .rose{
     position:fixed;
     top:-40px;
-    font-size:24px;
+    font-size:30px; /* bigger petals */
+    text-shadow: 0 0 5px #fff; /* subtle glow to stand out */
     animation:fall linear infinite;
 }
 @keyframes fall{
@@ -107,6 +106,7 @@ button{
         transform:translateY(110vh) rotate(360deg);
     }
 }
+
 
 /* Photos */
 .photos img{
@@ -147,16 +147,19 @@ button{
 /* Fireworks */
 .firework{
     position:fixed;
-    width:6px;
-    height:6px;
-    background:gold;
+    width:8px;
+    height:8px;
     border-radius:50%;
-    animation:explode 1.5s ease-out;
+    background: #ffd700; /* gold */
+    box-shadow: 0 0 8px #ffd700, 0 0 12px #ff4500, 0 0 16px #ff69b4;
+    animation:explode 1.2s ease-out forwards;
 }
 @keyframes explode{
-    from{transform:scale(0);opacity:1;}
-    to{transform:scale(5);opacity:0;}
+    0% { transform: scale(0); opacity:1; }
+    50% { transform: scale(5); opacity:1; }
+    100% { transform: scale(8); opacity:0; }
 }
+
 </style>
 </head>
 
@@ -304,15 +307,16 @@ for(let i=0;i<20;i++){
 
 /* Fireworks */
 setInterval(()=>{
-    if(currentPage===8){
-        let f=document.createElement("div");
-        f.className="firework";
-        f.style.left=Math.random()*100+"vw";
-        f.style.top=Math.random()*100+"vh";
+    if(currentPage === 8){ // only on last page
+        let f = document.createElement("div");
+        f.className = "firework";
+        f.style.left = Math.random()*100 + "vw";
+        f.style.top = Math.random()*50 + "vh"; // top half
         document.body.appendChild(f);
-        //setTimeout(()=>f.remove(),1500);
+        setTimeout(()=> f.remove(), 1500);
     }
-},300);
+}, 200); // faster interval
+
 </script>
 
 </body>
