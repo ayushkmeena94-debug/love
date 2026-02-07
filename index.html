@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For My Love</title>
+
+<style>
+body{
+  margin:0;
+  background:#ff0a3d;
+  font-family:'Georgia',serif;
+  overflow:hidden;
+}
+
+/* Book */
+.book{
+  width:380px;
+  height:520px;
+  perspective:2500px;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+
+/* Pages */
+.page{
+  width:100%;
+  height:100%;
+  background:#fff9f2;
+  color:#4a0000;
+  position:absolute;
+  transform-origin:left;
+  transition:1.5s;
+  backface-visibility:hidden;
+  padding:25px;
+  box-sizing:border-box;
+  border-radius:12px;
+  box-shadow:0 0 30px rgba(255,0,0,0.6);
+  font-size:18px;
+  line-height:1.6;
+}
+
+#p1{z-index:5;}
+#p2{z-index:4;}
+#p3{z-index:3;}
+#p4{z-index:2;}
+#p5{z-index:1;}
+
+button{
+  position:absolute;
+  bottom:10px;
+  right:15px;
+  padding:8px 18px;
+  border:none;
+  background:#ff0033;
+  color:white;
+  border-radius:20px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* Falling petals */
+.petal{
+  position:fixed;
+  top:-50px;
+  width:25px;
+  animation:fall linear infinite;
+}
+
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg);}
+}
+
+/* Fireworks */
+.firework{
+  position:fixed;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  animation:explode 1.5s forwards;
+}
+
+@keyframes explode{
+  from{transform:scale(1);}
+  to{transform:scale(70); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="book">
+
+<!-- PAGE 1 -->
+<div class="page" id="p1">
+<h2>Hey My Love ❤️</h2>
+<p>Happy Anniversary My Beautiful Girl 🥺❤️</p>
+<p>This is something I made only for you.</p>
+<p>Not a gift from a shop, but from my heart.</p>
+<button onclick="flip(1)">Next</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+<h2>My Apology Letter 💌</h2>
+<p>I'm really sorry if I ever hurt you.</p>
+<p>You mean everything to me.</p>
+<p>I never want to lose you.</p>
+<p>Sometimes I act stupid, but I love you deeply.</p>
+<p>Please forgive me and stay with me forever.</p>
+<button onclick="flip(2)">Next</button>
+</div>
+
+<!-- PAGE 3 LONG LOVE LETTER -->
+<div class="page" id="p3">
+<h2>Why I Love You</h2>
+<p>I love the way you talk.</p>
+<p>I love the way you smile.</p>
+<p>I love the way you get angry on me.</p>
+<p>I love the way you care for me.</p>
+<p>You are my comfort, my happiness, my peace.</p>
+<p>I promise to always support you.</p>
+<button onclick="flip(3)">Next</button>
+</div>
+
+<!-- PAGE 4 HUG -->
+<div class="page" id="p4">
+<h2>I Wish I Could Hug You 🤗</h2>
+<img src="hug.gif" width="100%" style="border-radius:10px;">
+<p>Imagine I'm hugging you tightly right now.</p>
+<button onclick="flip(4)">Next</button>
+</div>
+
+<!-- PAGE 5 ANNIVERSARY QUESTION -->
+<div class="page" id="p5">
+<h2>Will You Be My Forever Anniversary Date? 💖</h2>
+<p>Say yes and stay with me always.</p>
+<button onclick="alert('She said YES 😍')">YES</button>
+</div>
+
+</div>
+
+<script>
+function flip(n){
+  document.getElementById("p"+n).style.transform="rotateY(-180deg)";
+  if(n==4) startFireworks();
+}
+
+/* Falling roses */
+for(let i=0;i<30;i++){
+  let p=document.createElement("img");
+  p.src="rose.png";
+  p.className="petal";
+  p.style.left=Math.random()*100+"vw";
+  p.style.animationDuration=(5+Math.random()*5)+"s";
+  p.style.opacity=Math.random();
+  document.body.appendChild(p);
+}
+
+/* Fireworks */
+function startFireworks(){
+  setInterval(()=>{
+    let f=document.createElement("div");
+    f.className="firework";
+    f.style.left=Math.random()*100+"vw";
+    f.style.top=Math.random()*100+"vh";
+    f.style.background="hsl("+Math.random()*360+",100%,50%)";
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1500);
+  },250);
+}
+</script>
+
+</body>
+</html>
