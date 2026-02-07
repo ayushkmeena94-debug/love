@@ -1,175 +1,273 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For My Love</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
 
 <style>
-body{
-  margin:0;
-  background:#ff0a3d;
-  font-family:'Georgia',serif;
-  overflow:hidden;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Georgia', serif;
 }
 
-/* Book */
-.book{
-  width:380px;
-  height:520px;
-  perspective:2500px;
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
+body {
+    background: radial-gradient(circle, #ff5f6d, #b00020);
+    color: #fff;
+    overflow-x: hidden;
+    text-align: center;
 }
 
-/* Pages */
-.page{
-  width:100%;
-  height:100%;
-  background:#fff9f2;
-  color:#4a0000;
-  position:absolute;
-  transform-origin:left;
-  transition:1.5s;
-  backface-visibility:hidden;
-  padding:25px;
-  box-sizing:border-box;
-  border-radius:12px;
-  box-shadow:0 0 30px rgba(255,0,0,0.6);
-  font-size:18px;
-  line-height:1.6;
+.page {
+    display: none;
+    min-height: 100vh;
+    padding: 40px 20px 100px;
 }
 
-#p1{z-index:5;}
-#p2{z-index:4;}
-#p3{z-index:3;}
-#p4{z-index:2;}
-#p5{z-index:1;}
-
-button{
-  position:absolute;
-  bottom:10px;
-  right:15px;
-  padding:8px 18px;
-  border:none;
-  background:#ff0033;
-  color:white;
-  border-radius:20px;
-  font-size:16px;
-  cursor:pointer;
+.page.active {
+    display: block;
 }
 
-/* Falling petals */
-.petal{
-  position:fixed;
-  top:-50px;
-  width:25px;
-  animation:fall linear infinite;
+/* Buttons */
+button {
+    padding: 14px 26px;
+    font-size: 18px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
 }
 
-@keyframes fall{
-  to{transform:translateY(110vh) rotate(360deg);}
+.yes-btn {
+    background: #ffccd5;
+    color: #800020;
+}
+
+.no-btn {
+    background: #800020;
+    color: #fff;
+    position: absolute;
+}
+
+/* Back Button */
+.back-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffccd5;
+    color: #800020;
+}
+
+/* Notebook Pages */
+.notebook {
+    max-width: 320px;
+    margin: auto;
+    background: #fff;
+    color: #333;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    animation: flip 0.6s;
+}
+
+@keyframes flip {
+    from { transform: rotateY(90deg); }
+    to { transform: rotateY(0); }
+}
+
+/* Roses */
+.rose {
+    position: fixed;
+    top: -50px;
+    font-size: 24px;
+    animation: fall linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+/* Photos */
+.photos img {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 15px;
+    margin: 10px;
+}
+
+/* Gift Boxes */
+.gifts {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.gift {
+    width: 100px;
+    height: 100px;
+    background: #b3e5fc;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #004d80;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 /* Fireworks */
-.firework{
-  position:fixed;
-  width:5px;
-  height:5px;
-  border-radius:50%;
-  animation:explode 1.5s forwards;
+.firework {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: gold;
+    border-radius: 50%;
+    animation: explode 1.5s infinite;
 }
 
-@keyframes explode{
-  from{transform:scale(1);}
-  to{transform:scale(70); opacity:0;}
+@keyframes explode {
+    from { transform: scale(0); opacity: 1; }
+    to { transform: scale(4); opacity: 0; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="book">
+<audio autoplay loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
 
 <!-- PAGE 1 -->
-<div class="page" id="p1">
-<h2>Hey My Love ❤️</h2>
-<p>Happy Anniversary My Beautiful Girl 🥺❤️</p>
-<p>This is something I made only for you.</p>
-<p>Not a gift from a shop, but from my heart.</p>
-<button onclick="flip(1)">Next</button>
+<div class="page active" id="page1">
+    <h1>Will you be my first anniversary date? 💕</h1>
+    <br><br>
+    <button class="yes-btn" onclick="goPage(2)">YES 💖</button>
+    <button class="no-btn" id="noBtn">NO 🙈</button>
 </div>
 
-<!-- PAGE 2 -->
-<div class="page" id="p2">
-<h2>My Apology Letter 💌</h2>
-<p>I'm really sorry if I ever hurt you.</p>
-<p>You mean everything to me.</p>
-<p>I never want to lose you.</p>
-<p>Sometimes I act stupid, but I love you deeply.</p>
-<p>Please forgive me and stay with me forever.</p>
-<button onclick="flip(2)">Next</button>
+<!-- APOLOGY PAGES -->
+<div class="page" id="page2">
+    <div class="notebook">
+        <p>I know I’m not perfect…</p>
+        <p>I make mistakes I regret.</p>
+        <p>But my heart chooses you</p>
+        <p>Every single day.</p>
+    </div>
+    <button class="back-btn" onclick="goPage(1)">Back</button>
 </div>
 
-<!-- PAGE 3 LONG LOVE LETTER -->
-<div class="page" id="p3">
-<h2>Why I Love You</h2>
-<p>I love the way you talk.</p>
-<p>I love the way you smile.</p>
-<p>I love the way you get angry on me.</p>
-<p>I love the way you care for me.</p>
-<p>You are my comfort, my happiness, my peace.</p>
-<p>I promise to always support you.</p>
-<button onclick="flip(3)">Next</button>
+<div class="page" id="page3">
+    <div class="notebook">
+        <p>I’m sorry for the moments</p>
+        <p>I didn’t understand you.</p>
+        <p>For every tear I caused,</p>
+        <p>I promise to do better.</p>
+    </div>
+    <button class="back-btn" onclick="goPage(2)">Back</button>
 </div>
 
-<!-- PAGE 4 HUG -->
-<div class="page" id="p4">
-<h2>I Wish I Could Hug You 🤗</h2>
-<img src="hug.gif" width="100%" style="border-radius:10px;">
-<p>Imagine I'm hugging you tightly right now.</p>
-<button onclick="flip(4)">Next</button>
+<div class="page" id="page4">
+    <div class="notebook">
+        <p>You mean more to me</p>
+        <p>Than words can explain.</p>
+        <p>You are my safe place,</p>
+        <p>My heart, my love.</p>
+    </div>
+    <button class="back-btn" onclick="goPage(3)">Back</button>
 </div>
 
-<!-- PAGE 5 ANNIVERSARY QUESTION -->
-<div class="page" id="p5">
-<h2>Will You Be My Forever Anniversary Date? 💖</h2>
-<p>Say yes and stay with me always.</p>
-<button onclick="alert('She said YES 😍')">YES</button>
+<div class="page" id="page5">
+    <div class="notebook">
+        <p>Please forgive me.</p>
+        <p>Please choose us.</p>
+        <p>Please stay with me.</p>
+        <p>I love you endlessly ❤️</p>
+    </div>
+    <button class="back-btn" onclick="goPage(4)">Back</button>
 </div>
 
+<!-- PHOTOS -->
+<div class="page" id="page6">
+    <h2>Our Memories 📸</h2>
+    <div class="photos">
+        <img src="photo1.jpg">
+        <img src="photo2.jpg">
+        <img src="photo3.jpg">
+    </div>
+    <button class="back-btn" onclick="goPage(5)">Back</button>
+</div>
+
+<!-- GIFTS -->
+<div class="page" id="page7">
+    <h2>Choose Your Gift 🎁</h2>
+    <div class="gifts">
+        <div class="gift" onclick="showGift('Hug 🤗')">Hug</div>
+        <div class="gift" onclick="showGift('Kiss 😘')">Kiss</div>
+        <div class="gift" onclick="showGift('Forever 💍')">Forever</div>
+    </div>
+    <p id="giftResult"></p>
+    <button class="back-btn" onclick="goPage(6)">Back</button>
+</div>
+
+<!-- FINAL PAGE -->
+<div class="page" id="page8">
+    <h1>My Promise ❤️</h1>
+    <p>
+        I promise to love you in every season.<br>
+        To choose you even on hard days.<br>
+        To grow with you, laugh with you,<br>
+        And hold your hand forever.
+    </p>
 </div>
 
 <script>
-function flip(n){
-  document.getElementById("p"+n).style.transform="rotateY(-180deg)";
-  if(n==4) startFireworks();
+let currentPage = 1;
+
+function goPage(n) {
+    document.getElementById('page' + currentPage).classList.remove('active');
+    currentPage = n;
+    document.getElementById('page' + currentPage).classList.add('active');
 }
 
-/* Falling roses */
-for(let i=0;i<30;i++){
-  let p=document.createElement("img");
-  p.src="rose.png";
-  p.className="petal";
-  p.style.left=Math.random()*100+"vw";
-  p.style.animationDuration=(5+Math.random()*5)+"s";
-  p.style.opacity=Math.random();
-  document.body.appendChild(p);
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("click", () => {
+    noBtn.style.top = Math.random() * 80 + "%";
+    noBtn.style.left = Math.random() * 80 + "%";
+});
+
+function showGift(text) {
+    document.getElementById("giftResult").innerText = text + " animation coming soon 💕";
+    setTimeout(() => goPage(8), 1500);
+}
+
+/* Roses */
+for (let i = 0; i < 20; i++) {
+    let rose = document.createElement("div");
+    rose.className = "rose";
+    rose.innerText = "🌹";
+    rose.style.left = Math.random() * 100 + "vw";
+    rose.style.animationDuration = 5 + Math.random() * 5 + "s";
+    document.body.appendChild(rose);
 }
 
 /* Fireworks */
-function startFireworks(){
-  setInterval(()=>{
-    let f=document.createElement("div");
-    f.className="firework";
-    f.style.left=Math.random()*100+"vw";
-    f.style.top=Math.random()*100+"vh";
-    f.style.background="hsl("+Math.random()*360+",100%,50%)";
-    document.body.appendChild(f);
-    setTimeout(()=>f.remove(),1500);
-  },250);
-}
+setInterval(() => {
+    if (currentPage === 8) {
+        let fw = document.createElement("div");
+        fw.className = "firework";
+        fw.style.left = Math.random() * 100 + "vw";
+        fw.style.top = Math.random() * 100 + "vh";
+        document.body.appendChild(fw);
+        setTimeout(() => fw.remove(), 1500);
+    }
+}, 300);
 </script>
 
 </body>
