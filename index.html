@@ -14,7 +14,7 @@
 }
 
 body {
-    background: radial-gradient(circle, #ff5f6d, #b00020);
+    background: radial-gradient(circle, #ff5f6d, #8b0000);
     color: #fff;
     overflow-x: hidden;
     text-align: center;
@@ -40,7 +40,7 @@ button {
 }
 
 .yes-btn {
-    background: #ffccd5;
+    background: #ffd6dc;
     color: #800020;
 }
 
@@ -56,19 +56,19 @@ button {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background: #ffccd5;
+    background: #ffd6dc;
     color: #800020;
 }
 
-/* Notebook Pages */
+/* Notebook */
 .notebook {
-    max-width: 320px;
+    max-width: 340px;
     margin: auto;
     background: #fff;
     color: #333;
     padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.3);
     animation: flip 0.6s;
 }
 
@@ -80,10 +80,10 @@ button {
 /* Roses */
 .rose {
     position: fixed;
-    top: -50px;
+    top: -40px;
     font-size: 24px;
     animation: fall linear infinite;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 @keyframes fall {
@@ -95,30 +95,32 @@ button {
 /* Photos */
 .photos img {
     width: 100%;
-    max-width: 250px;
-    border-radius: 15px;
-    margin: 10px;
+    max-width: 260px;
+    border-radius: 18px;
+    margin: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
 }
 
-/* Gift Boxes */
+/* Gifts */
 .gifts {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 20px;
     flex-wrap: wrap;
 }
 
 .gift {
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
     background: #b3e5fc;
-    border-radius: 15px;
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #004d80;
     font-weight: bold;
     cursor: pointer;
+    box-shadow: 0 0 15px rgba(255,255,255,0.4);
 }
 
 /* Fireworks */
@@ -128,78 +130,78 @@ button {
     height: 6px;
     background: gold;
     border-radius: 50%;
-    animation: explode 1.5s infinite;
+    animation: explode 1.5s ease-out;
 }
 
 @keyframes explode {
     from { transform: scale(0); opacity: 1; }
-    to { transform: scale(4); opacity: 0; }
+    to { transform: scale(5); opacity: 0; }
 }
 </style>
 </head>
 
 <body>
 
-<audio autoplay loop>
+<!-- MUSIC (starts after YES) -->
+<audio id="bgMusic" loop>
     <source src="song.mp3" type="audio/mpeg">
 </audio>
 
 <!-- PAGE 1 -->
 <div class="page active" id="page1">
-    <h1>Will you be my first anniversary date? 💕</h1>
+    <h1>Will you be my first anniversary date? ❤️</h1>
     <br><br>
-    <button class="yes-btn" onclick="goPage(2)">YES 💖</button>
+    <button class="yes-btn" onclick="startLove()">YES 💖</button>
     <button class="no-btn" id="noBtn">NO 🙈</button>
 </div>
 
 <!-- APOLOGY PAGES -->
 <div class="page" id="page2">
     <div class="notebook">
-        <p>I know I’m not perfect…</p>
-        <p>I make mistakes I regret.</p>
-        <p>But my heart chooses you</p>
-        <p>Every single day.</p>
+        <p>I know I’ve hurt you sometimes,</p>
+        <p>Even when I never meant to.</p>
+        <p>But my heart has always</p>
+        <p>Belonged only to you.</p>
     </div>
     <button class="back-btn" onclick="goPage(1)">Back</button>
 </div>
 
 <div class="page" id="page3">
     <div class="notebook">
-        <p>I’m sorry for the moments</p>
-        <p>I didn’t understand you.</p>
-        <p>For every tear I caused,</p>
-        <p>I promise to do better.</p>
+        <p>I’m sorry for the silence,</p>
+        <p>The misunderstandings,</p>
+        <p>And the moments I failed</p>
+        <p>To love you the right way.</p>
     </div>
     <button class="back-btn" onclick="goPage(2)">Back</button>
 </div>
 
 <div class="page" id="page4">
     <div class="notebook">
-        <p>You mean more to me</p>
-        <p>Than words can explain.</p>
-        <p>You are my safe place,</p>
-        <p>My heart, my love.</p>
+        <p>You are my comfort,</p>
+        <p>My happiness, my home.</p>
+        <p>Life feels incomplete</p>
+        <p>Whenever you’re not smiling.</p>
     </div>
     <button class="back-btn" onclick="goPage(3)">Back</button>
 </div>
 
 <div class="page" id="page5">
     <div class="notebook">
-        <p>Please forgive me.</p>
-        <p>Please choose us.</p>
-        <p>Please stay with me.</p>
-        <p>I love you endlessly ❤️</p>
+        <p>Please forgive my flaws.</p>
+        <p>Please hold my hand again.</p>
+        <p>Please let me prove</p>
+        <p>That I choose you — always.</p>
     </div>
     <button class="back-btn" onclick="goPage(4)">Back</button>
 </div>
 
-<!-- PHOTOS -->
+<!-- PHOTOS PAGE -->
 <div class="page" id="page6">
     <h2>Our Memories 📸</h2>
     <div class="photos">
-        <img src="photo1.jpg">
-        <img src="photo2.jpg">
-        <img src="photo3.jpg">
+        <img src="memory1.jpg">
+        <img src="memory2.jpg">
     </div>
     <button class="back-btn" onclick="goPage(5)">Back</button>
 </div>
@@ -212,7 +214,7 @@ button {
         <div class="gift" onclick="showGift('Kiss 😘')">Kiss</div>
         <div class="gift" onclick="showGift('Forever 💍')">Forever</div>
     </div>
-    <p id="giftResult"></p>
+    <p id="giftResult" style="margin-top:20px;"></p>
     <button class="back-btn" onclick="goPage(6)">Back</button>
 </div>
 
@@ -220,15 +222,21 @@ button {
 <div class="page" id="page8">
     <h1>My Promise ❤️</h1>
     <p>
-        I promise to love you in every season.<br>
-        To choose you even on hard days.<br>
-        To grow with you, laugh with you,<br>
-        And hold your hand forever.
+        I promise to love you gently.<br>
+        To fight for us, not against us.<br>
+        To choose you in every lifetime,<br>
+        And celebrate many anniversaries together.
     </p>
 </div>
 
 <script>
 let currentPage = 1;
+const music = document.getElementById("bgMusic");
+
+function startLove() {
+    music.play();
+    goPage(2);
+}
 
 function goPage(n) {
     document.getElementById('page' + currentPage).classList.remove('active');
@@ -236,39 +244,15 @@ function goPage(n) {
     document.getElementById('page' + currentPage).classList.add('active');
 }
 
+/* NO button escape */
 const noBtn = document.getElementById("noBtn");
 noBtn.addEventListener("click", () => {
     noBtn.style.top = Math.random() * 80 + "%";
     noBtn.style.left = Math.random() * 80 + "%";
 });
 
+/* Gift */
 function showGift(text) {
-    document.getElementById("giftResult").innerText = text + " animation coming soon 💕";
-    setTimeout(() => goPage(8), 1500);
-}
+    document.getElementById("giftResult").innerText =
+        text + " ani
 
-/* Roses */
-for (let i = 0; i < 20; i++) {
-    let rose = document.createElement("div");
-    rose.className = "rose";
-    rose.innerText = "🌹";
-    rose.style.left = Math.random() * 100 + "vw";
-    rose.style.animationDuration = 5 + Math.random() * 5 + "s";
-    document.body.appendChild(rose);
-}
-
-/* Fireworks */
-setInterval(() => {
-    if (currentPage === 8) {
-        let fw = document.createElement("div");
-        fw.className = "firework";
-        fw.style.left = Math.random() * 100 + "vw";
-        fw.style.top = Math.random() * 100 + "vh";
-        document.body.appendChild(fw);
-        setTimeout(() => fw.remove(), 1500);
-    }
-}, 300);
-</script>
-
-</body>
-</html>
