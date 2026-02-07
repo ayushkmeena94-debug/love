@@ -6,253 +6,98 @@
 <title>For You ❤️</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Georgia', serif;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Georgia, serif;
 }
 
-body {
+body{
     background: radial-gradient(circle, #ff5f6d, #8b0000);
-    color: #fff;
-    overflow-x: hidden;
-    text-align: center;
+    color:white;
+    text-align:center;
+    overflow-x:hidden;
 }
 
-.page {
-    display: none;
-    min-height: 100vh;
-    padding: 40px 20px 100px;
+/* Pages */
+.page{
+    display:none;
+    min-height:100vh;
+    padding:40px 20px 100px;
 }
-
-.page.active {
-    display: block;
+.page.active{
+    display:block;
 }
 
 /* Buttons */
-button {
-    padding: 14px 26px;
-    font-size: 18px;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
+button{
+    padding:14px 26px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+}
+.yes-btn{
+    background:#ffd6dc;
+    color:#800020;
+}
+.no-btn{
+    background:#800020;
+    color:white;
+    position:absolute;
+    top:60%;
+    left:55%;
 }
 
-.yes-btn {
-    background: #ffd6dc;
-    color: #800020;
-}
-
-.no-btn {
-    background: #800020;
-    color: #fff;
-    position: absolute;
-}
-
-/* Back Button */
-.back-btn {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #ffd6dc;
-    color: #800020;
+/* Back button */
+.back-btn{
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#ffd6dc;
+    color:#800020;
 }
 
 /* Notebook */
-.notebook {
-    max-width: 340px;
-    margin: auto;
-    background: #fff;
-    color: #333;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.3);
-    animation: flip 0.6s;
+.notebook{
+    background:#fffdf8;
+    color:#333;
+    max-width:350px;
+    margin:auto;
+    padding:30px;
+    border-radius:12px;
+    font-size:18px;
+    line-height:1.6;
+    box-shadow:0 0 25px rgba(0,0,0,0.4);
+    background-image: repeating-linear-gradient(
+        #fffdf8,
+        #fffdf8 24px,
+        #d8cfc4 25px
+    );
+    animation:flip 0.6s;
 }
-
-@keyframes flip {
-    from { transform: rotateY(90deg); }
-    to { transform: rotateY(0); }
+@keyframes flip{
+    from{transform:rotateY(90deg);}
+    to{transform:rotateY(0);}
 }
 
 /* Roses */
-.rose {
-    position: fixed;
-    top: -40px;
-    font-size: 24px;
-    animation: fall linear infinite;
-    opacity: 0.9;
+.rose{
+    position:fixed;
+    top:-40px;
+    font-size:24px;
+    animation:fall linear infinite;
 }
-
-@keyframes fall {
-    to {
-        transform: translateY(110vh) rotate(360deg);
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(360deg);
     }
 }
 
 /* Photos */
-.photos img {
-    width: 100%;
-    max-width: 260px;
-    border-radius: 18px;
-    margin: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.4);
-}
-
-/* Gifts */
-.gifts {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.gift {
-    width: 110px;
-    height: 110px;
-    background: #b3e5fc;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #004d80;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 0 15px rgba(255,255,255,0.4);
-}
-
-/* Fireworks */
-.firework {
-    position: fixed;
-    width: 6px;
-    height: 6px;
-    background: gold;
-    border-radius: 50%;
-    animation: explode 1.5s ease-out;
-}
-
-@keyframes explode {
-    from { transform: scale(0); opacity: 1; }
-    to { transform: scale(5); opacity: 0; }
-}
-</style>
-</head>
-
-<body>
-
-<!-- MUSIC (starts after YES) -->
-<audio id="bgMusic" loop>
-    <source src="song22.mp3" type="audio/mpeg">
-</audio>
-
-<!-- PAGE 1 -->
-<div class="page active" id="page1">
-    <h1>Will you be my first anniversary date? ❤️</h1>
-    <br><br>
-    <button class="yes-btn" onclick="startLove()">YES 💖</button>
-    <button class="no-btn" id="noBtn">NO 🙈</button>
-</div>
-
-<!-- APOLOGY PAGES -->
-<div class="page" id="page2">
-    <div class="notebook">
-        <p>I know I’ve hurt you sometimes,</p>
-        <p>Even when I never meant to.</p>
-        <p>But my heart has always</p>
-        <p>Belonged only to you.</p>
-    </div>
-    <button class="back-btn" onclick="goPage(1)">Back</button>
-</div>
-
-<div class="page" id="page3">
-    <div class="notebook">
-        <p>I’m sorry for the silence,</p>
-        <p>The misunderstandings,</p>
-        <p>And the moments I failed</p>
-        <p>To love you the right way.</p>
-    </div>
-    <button class="back-btn" onclick="goPage(2)">Back</button>
-</div>
-
-<div class="page" id="page4">
-    <div class="notebook">
-        <p>You are my comfort,</p>
-        <p>My happiness, my home.</p>
-        <p>Life feels incomplete</p>
-        <p>Whenever you’re not smiling.</p>
-    </div>
-    <button class="back-btn" onclick="goPage(3)">Back</button>
-</div>
-
-<div class="page" id="page5">
-    <div class="notebook">
-        <p>Please forgive my flaws.</p>
-        <p>Please hold my hand again.</p>
-        <p>Please let me prove</p>
-        <p>That I choose you — always.</p>
-    </div>
-    <button class="back-btn" onclick="goPage(4)">Back</button>
-</div>
-
-<!-- PHOTOS PAGE -->
-<div class="page" id="page6">
-    <h2>Our Memories 📸</h2>
-    <div class="photos">
-        <img src="memory1.jpg">
-        <img src="memory2.jpg">
-    </div>
-    <button class="back-btn" onclick="goPage(5)">Back</button>
-</div>
-
-<!-- GIFTS -->
-<div class="page" id="page7">
-    <h2>Choose Your Gift 🎁</h2>
-    <div class="gifts">
-        <div class="gift" onclick="showGift('Hug 🤗')">Hug</div>
-        <div class="gift" onclick="showGift('Kiss 😘')">Kiss</div>
-        <div class="gift" onclick="showGift('Forever 💍')">Forever</div>
-    </div>
-    <p id="giftResult" style="margin-top:20px;"></p>
-    <button class="back-btn" onclick="goPage(6)">Back</button>
-</div>
-
-<!-- FINAL PAGE -->
-<div class="page" id="page8">
-    <h1>My Promise ❤️</h1>
-    <p>
-        I promise to love you gently.<br>
-        To fight for us, not against us.<br>
-        To choose you in every lifetime,<br>
-        And celebrate many anniversaries together.
-    </p>
-</div>
-
-<script>
-let currentPage = 1;
-const music = document.getElementById("bgMusic");
-
-function startLove() {
-    music.play();
-    goPage(2);
-}
-
-function goPage(n) {
-    document.getElementById('page' + currentPage).classList.remove('active');
-    currentPage = n;
-    document.getElementById('page' + currentPage).classList.add('active');
-}
-
-/* NO button escape */
-const noBtn = document.getElementById("noBtn");
-noBtn.addEventListener("click", () => {
-    noBtn.style.top = Math.random() * 80 + "%";
-    noBtn.style.left = Math.random() * 80 + "%";
-});
-
-/* Gift */
-function showGift(text) {
-    document.getElementById("giftResult").innerText =
-        text + " ani
-
+.photos img{
+    width:100%;
+    max-width:260px;
+    border-radi
