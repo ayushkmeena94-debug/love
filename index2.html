@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Ayush ❤️ Anniversary Surprise</title>
+    <meta name="description" content="A special anniversary website made by Ayush for his girlfriend, full of love, photos, gifts, and surprises.">
+    <meta name="keywords" content="Ayush, anniversary, love, romantic, surprise, girlfriend, gift, hug, kiss">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: Georgia, serif;
+        }
+
+        body{
+            background: #f9f0e6; 
+            color: #800020;
+        }
+
+        .page{
+            display:none;
+            min-height:100vh;
+            padding:40px 20px 100px;
+        }
+        .page.active{
+            display:block;
+        }
+
+        button{
+            padding:14px 26px;
+            font-size:18px;
+            border:none;
+            border-radius:30px;
+            cursor:pointer;
+        }
+        .yes-btn{
+            background:#ffd6dc;
+            color:#800020;
+        }
+        .no-btn{
+            background:#800020;
+            color:white;
+            position:absolute;
+            top:60%;
+            left:55%;
+        }
+
+        .back-btn{
+            position:fixed;
+            bottom:20px;
+            left:50%;
+            transform:translateX(-50%);
+            background:#ffd6dc;
+            color:#800020;
+        }
+        .next-btn{
+            position:fixed;
+            bottom:20px;
+            right:20px;
+            background:#ffccd5;
+            color:#800020;
+            padding:14px 26px;
+            border-radius:30px;
+            font-size:18px;
+            cursor:pointer;
+        }
+
+        .notebook{
+            background:#fffdf8;
+            color:#333;
+            max-width:350px;
+            margin:auto;
+            padding:30px;
+            border-radius:12px;
+            font-size:18px;
+            line-height:1.6;
+            box-shadow:0 0 25px rgba(0,0,0,0.4);
+            background-image: repeating-linear-gradient(
+                #fffdf8,
+                #fffdf8 24px,
+                #d8cfc4 25px
+            );
+            animation:flip 0.6s;
+        }
+        @keyframes flip{
+            from{transform:rotateY(90deg);}
+            to{transform:rotateY(0);}
+        }
+
+        .rose{
+            position:fixed;
+            top:-40px;
+            font-size:30px;
+            text-shadow: 0 0 5px #fff;
+            animation:fall linear infinite;
+        }
+        @keyframes fall{
+            to{
+                transform:translateY(110vh) rotate(360deg);
+            }
+        }
+
+        .photos img{
+            width:100%;
+            max-width:260px;
+            border-radius:18px;
+            margin:12px;
+            box-shadow:0 0 15px rgba(0,0,0,0.4);
+        }
+
+        .gifts{
+            display:flex;
+            justify-content:center;
+            gap:20px;
+            flex-wrap:wrap;
+        }
+        .gift{
+            width:120px;
+            height:120px;
+            background:#b3e5fc;
+            border-radius:20px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-weight:bold;
+            color:#004d80;
+            cursor:pointer;
+        }
+
+        .gift-video{
+            width:260px;
+            border-radius:20px;
+            margin-top:20px;
+        }
+
+        .firework{
+            position:fixed;
+            width:8px;
+            height:8px;
+            border-radius:50%;
+            background: #ffd700;
+            box-shadow: 0 0 8px #ffd700, 0 0 12px #ff4500, 0 0 16px #ff69b4;
+            animation:explode 1.2s ease-out forwards;
+        }
+        @keyframes explode{
+            0% { transform: scale(0); opacity:1; }
+            50% { transform: scale(5); opacity:1; }
+            100% { transform: scale(8); opacity:0; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+    <source src="tujbin.mpeg" type="audio/mpeg">
+</audio>
+
+<!-- APOLOGY PAGES -->
+<div class="page" id="page2">
+    <div class="notebook">
+        I know I’m not perfect.<br>
+        I make mistakes without realizing.<br>
+        Sometimes I hurt you,<br>
+        even when I don’t mean to.
+    </div>
+    <button class="back-btn" onclick="goPage(1)">Back</button>
+    <button class="next-btn" onclick="goPage(3)">Next ➡️</button>
+</div>
+
+<div class="page" id="page3">
+    <div class="notebook">
+        I’m sorry for the silence,<br>
+        the misunderstandings,<br>
+        and the moments<br>
+        I didn’t listen enough.
+    </div>
+    <button class="back-btn" onclick="goPage(2)">Back</button>
+    <button class="next-btn" onclick="goPage(4)">Next ➡️</button>
+</div>
+
+<div class="page" id="page4">
+    <div class="notebook">
+        You are my comfort,<br>
+        my happiness, my home.<br>
+        Life feels empty<br>
+        when you’re not smiling.
+    </div>
+    <button class="back-btn" onclick="goPage(3)">Back</button>
+    <button class="next-btn" onclick="goPage(5)">Next ➡️</button>
+</div>
+
+<div class="page" id="page5">
+    <div class="notebook">
+        Please forgive me.<br>
+        Please choose us.<br>
+        Please stay with me.<br>
+        I love you endlessly ❤️
+    </div>
+    <button class="back-btn" onclick="goPage(4)">Back</button>
+    <button class="next-btn" onclick="goPage(6)">Next ➡️</button>
+</div>
+
+<!-- PHOTOS -->
+<div class="page" id="page6">
+    <h2>Our Memories 📸</h2>
+    <div class="photos">
+        <img src="photo1.jpeg">
+        <img src="photo2.jpeg">
+    </div>
+    <button class="back-btn" onclick="goPage(5)">Back</button>
+    <button class="next-btn" onclick="goPage(7)">Next ➡️</button>
+</div>
+
+<!-- GIFTS -->
+<div class="page" id="page7">
+    <h2>Choose Your Gift 🎁</h2>
+    <div class="gifts">
+        <div class="gift" onclick="showGift('hug')">Hug 🤗</div>
+        <div class="gift" onclick="showGift('kiss')">Kiss 😘</div>
+        <div class="gift" onclick="showGift('forever')">Forever 💍</div>
+    </div>
+    <div id="giftArea"></div>
+    <button class="back-btn" onclick="goPage(6)">Back</button>
+    <button class="next-btn" onclick="goPage(8)">Next ➡️</button>
+</div>
+
+<!-- FINAL -->
+<div class="page" id="page8">
+    <h1>My Promise ❤️</h1>
+    <p>
+        I promise to love you gently.<br>
+        To fight for us, not against us.<br>
+        To choose you every day,<br>
+        and forever after.
+    </p>
+    <button class="back-btn" onclick="goPage(7)">Back</button>
+    <button class="back-btn" onclick="location.href='feeling.html'">Next ➡️</button>
+</div>
+
+<script>
+let currentPage = 2; // Start from page 2
+document.getElementById("page"+currentPage).classList.add("active");
+
+// Play background music
+const music = document.getElementById("bgMusic");
+try { music.play(); } catch(e) { console.log("Autoplay prevented"); }
+
+function goPage(n){
+    document.getElementById("page"+currentPage).classList.remove("active");
+    currentPage = n;
+    document.getElementById("page"+currentPage).classList.add("active");
+}
+
+// Gifts
+function showGift(type){
+    const area = document.getElementById("giftArea");
+    if(type==="hug"){
+        area.innerHTML = `<video class="gift-video" src="hug.mp4" autoplay loop muted></video>`;
+    }else if(type==="kiss"){
+        area.innerHTML = `<video class="gift-video" src="kiss.mp4" autoplay loop muted></video>`;
+    }else{
+        area.innerHTML = `<h3>Forever starts now 💍❤️</h3>`;
+    }
+}
+
+// Roses
+for(let i=0;i<20;i++){
+    let r=document.createElement("div");
+    r.className="rose";
+    r.innerText="🌹";
+    r.style.left=Math.random()*100+"vw";
+    r.style.animationDuration=5+Math.random()*5+"s";
+    document.body.appendChild(r);
+}
+
+// Fireworks
+setInterval(()=>{
+    if(currentPage === 8){
+        let f = document.createElement("div");
+        f.className = "firework";
+        f.style.left = Math.random()*100 + "vw";
+        f.style.top = Math.random()*50 + "vh";
+        document.body.appendChild(f);
+        setTimeout(()=> f.remove(), 1500);
+    }
+}, 200);
+</script>
+</body>
+</html>
